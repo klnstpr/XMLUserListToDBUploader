@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Users list</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Users List</h1>
+    <form th:action="@{/users}" method="get">
+        <button type="submit">Back to user list</button>
+    </form>
+    <table border="1" class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>
+                <a th:href="@{'/users/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">
+                    ID</a>
+            </th>
+            <th>
+                <a th:href="@{'/users/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+                    Name</a>
+            </th>
+            <th>
+                <a th:href="@{'/users/' + ${currentPage} + '?sortField=surname&sortDir=' + ${reverseSortDir}}">
+                    Surname</a>
+            </th>
+            <th>
+                <a th:href="@{'/users/' + ${currentPage} + '?sortField=login&sortDir=' + ${reverseSortDir}}">
+                    Login</a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.login}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
